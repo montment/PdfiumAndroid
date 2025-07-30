@@ -16,11 +16,46 @@ API is highly compatible with original version, only additional methods were cre
 * Add support for mips64
 
 ## Installation
+
+### From Maven Central (Original)
 Add to _build.gradle_:
 
 `compile 'com.github.barteksc:pdfium-android:1.9.0'`
 
 Library is available in jcenter and Maven Central repositories.
+
+### From Local Maven Repository
+This fork supports publishing to local Maven repository for development and testing purposes.
+
+#### Publishing to Local Maven
+```bash
+# Using the provided script (recommended)
+./publish-local.sh
+
+# Or using Gradle directly
+./gradlew publishToMavenLocal
+```
+
+#### Using the Local Library
+1. Add `mavenLocal()` to your project's repositories:
+```gradle
+allprojects {
+    repositories {
+        mavenLocal()  // Add this line
+        google()
+        mavenCentral()
+    }
+}
+```
+
+2. Add the dependency to your app's build.gradle:
+```gradle
+dependencies {
+    implementation 'com.shockwave:pdfium-android:1.9.0'
+}
+```
+
+For detailed instructions, see [LOCAL_MAVEN_PUBLISHING.md](LOCAL_MAVEN_PUBLISHING.md).
 
 ## Methods inconsistency
 Version 1.8.0 added method for getting page size - `PdfiumCore#getPageSize(...)`.
